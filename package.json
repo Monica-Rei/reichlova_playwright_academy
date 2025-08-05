@@ -1,0 +1,22 @@
+{
+  "name": "reichlova_playwright_academy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Monica-Rei/reichlova_playwright_academy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Monica-Rei/reichlova_playwright_academy/issues"
+  },
+  "homepage": "https://github.com/Monica-Rei/reichlova_playwright_academy#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.1.0"
+  }
+}
