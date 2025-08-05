@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 
-test("iPhone", async ({ page }) => {
+test("add iPhone in cart", async ({ page }) => {
   await page.goto("https://tredgate.com/eshop/");
   await page.locator('[name="search"]').fill("iphone");
   await page.locator('#search [type="button"]').click();
