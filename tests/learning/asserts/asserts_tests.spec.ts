@@ -14,14 +14,16 @@ test.describe("Assers - Testing with Playwright", () => {
   test("toContainText Assert", async ({ page }) => {
     const dashboardHeader = page.locator("#welcome-page-header");
 
-    await expect(dashboardHeader).toContainText("Vítej v testovací aplikaci");
+    await expect(dashboardHeader).toContainText(
+      "Vítej v testovací aplikaci Tredgate Project"
+    );
   });
 
   test("toHaveText Assert", async ({ page }) => {
     const dashboardHeader = page.locator("#welcome-page-header");
 
     await expect(dashboardHeader).toHaveText(
-      "Vítej v testovací aplikaci Tredgate"
+      "Vítej v testovací aplikaci Tredgate Project"
     );
   });
 
@@ -43,7 +45,7 @@ test.describe("Assers - Testing with Playwright", () => {
 
     await expect
       .soft(page.locator("#welcome-page-header"))
-      .toHaveText("Vítej v testovací aplikaci");
+      .toHaveText("Vítej v testovací aplikaci Tredgate Project");
     await dashboardPage
       .clickProfile()
       .then((dashboard) => dashboard.clickLogoutButton());
