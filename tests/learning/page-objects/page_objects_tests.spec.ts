@@ -1,6 +1,5 @@
-//import test from "node:test";
-import { LoginPage } from "../../../src/pages/pmtool/login_page.ts";
 import { test } from "@playwright/test";
+import { LoginPage } from "src/pages/pmtool/login_page";
 
 test("Page Objects Test", async ({ page }) => {
   //test code
