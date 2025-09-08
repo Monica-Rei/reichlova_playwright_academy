@@ -24,6 +24,19 @@ export class CreateNewProjectModal {
   readonly alertMessageDiv: Locator;
   readonly deleteAttachmentButton: Locator;
   readonly firstAttachmentName: Locator;
+  readonly wishListButton: Locator;
+  readonly compareButton: Locator;
+  readonly productHeader: Locator;
+  readonly brandLabel: Locator;
+  readonly brandName: Locator;
+  readonly productCodeLabel: Locator;
+  readonly availabilityLabel: Locator;
+  readonly priceLabel: Locator;
+  readonly priceExTaxLabel: Locator;
+  readonly quantityLabel: Locator;
+  readonly quantityInput: Locator;
+  readonly addToCartButton: Locator;
+  readonly addToCartValidationMessage: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -68,6 +81,44 @@ export class CreateNewProjectModal {
     );
     this.firstAttachmentName = page.locator(
       '//div[@data-testid="Attachments"]//div[contains(@class, "attachments-form-list")]//tr[1]/td[1]'
+    );
+    this.wishListButton = page.locator('//div[@class="btn-group"]//button[1]');
+    this.compareButton = page.locator('//div[@class="btn-group"]//button[2]');
+    this.productHeader = page.locator(
+      '//div[@id="content"]//div[@class="col-sm-4"]//h1'
+    );
+    this.brandLabel = page.locator(
+      '//div[@class="col-sm-4"]//ul[@class="list-unstyled"][1]/li[1]'
+    );
+    this.brandName = page.locator(
+      '//div[@class="col-sm-4"]//ul[@class="list-unstyled"][1]/li[1]/a'
+    );
+    /*this.productCodeLabel = page.locator(
+      '//div[@class="col-sm-4"]//ul[@class="list-unstyled"][1]/li[2]'
+    ); */
+
+    /* this.productCodeLabel = page.locator(
+      '//div[@class="col-sm-4"]//li[contains(text(), "Product Code")]'
+    ); */
+
+    this.productCodeLabel = page.locator(
+      '//div[contains(@class,"col-sm-4")]//li[starts-with(normalize-space(.), "Product Code")]'
+    );
+
+    this.availabilityLabel = page.locator(
+      '//div[@class="col-sm-4"]//ul[@class="list-unstyled"][1]/li[3]'
+    );
+    this.priceLabel = page.locator('//ul[@class="list-unstyled"]//h2');
+    this.priceExTaxLabel = page.locator(
+      '//div[@class="col-sm-4"]//ul[@class="list-unstyled"][2]/li[2]'
+    );
+    this.quantityLabel = page.locator(
+      '//div[@class="form-group"]/label[@class="control-label"]'
+    );
+    this.quantityInput = page.locator('//input[@id="input-quantity"]');
+    this.addToCartButton = page.locator('//button[@id="button-cart"]');
+    this.addToCartValidationMessage = page.locator(
+      '//div[@class="alert alert-success alert-dismissible"]'
     );
   }
 
@@ -138,5 +189,11 @@ export class CreateNewProjectModal {
     // ? Pro zobrazení validační hlášky je potřeba kliknout na tlačítko "Uložit" bez vyplnění povinných polí, my na to využijeme už existující metodu triggerNameValidation. Mohlo by se zdát, že jde o duplicitu, ale z pohledu psaní testů nám tato metoda může zjednodušit hledání této metody v testech.
     // ? V testech pak můžeme použít triggerAlertMessage() a nemusíme se starat o to, co přesně se děje v této metodě.
     return await this.triggerNameValidation();
+  }
+
+  async addToCart(): Promise<CreateNewProjectModal> {
+    await this.addToCartButton.click();
+    await expect.soft(this.addToCartValidationMessage).toBeVisible();
+    return this;
   }
 }
